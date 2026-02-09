@@ -1,0 +1,15 @@
+apiVersion: move2kube.konveyor.io/v1alpha1
+kind: Transformer
+metadata:
+  name: CustomHelmTransformer
+  labels:
+    move2kube.konveyor.io/transformer: Helm
+spec:
+  class: "Starlark"
+  directoryDetectedAsService: true
+  override:
+    matchLabels:
+      move2kube.konveyor.io/transformer: Helm
+  # The script that defines the logic
+  config:
+    source: transformer.star

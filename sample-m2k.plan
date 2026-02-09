@@ -1,0 +1,40 @@
+apiVersion: move2kube.konveyor.io/v1alpha1
+kind: Plan
+metadata:
+  name: my-project-plan
+spec:
+  sourceDir: .
+  # The transformers section defines which transformers are enabled/disabled
+  transformers:
+    # We want these ENABLED
+    Dockerfile:
+      enabled: true
+    Helm:
+      enabled: true
+    
+    # We want these DISABLED according to your requirements
+    Kubernetes:
+      enabled: false
+    Knative:
+      enabled: false
+    Tekton:
+      enabled: false
+    ArgoCD:
+      enabled: false
+    DockerCompose:
+      enabled: false
+    CloudFoundry:
+      enabled: false
+    
+    # Custom transformers will be detected if you pass -c ./customizations
+    # They usually inherit the name from their metadata
+    CustomHelmTransformer:
+      enabled: true
+    CustomDockerfileTransformer:
+      enabled: true
+
+  # This section defines the services detected in your source code
+  services:
+    my-app:
+      - transformerName: CustomDockerfileTransformer
+      - transformerName: CustomHelmTransformer

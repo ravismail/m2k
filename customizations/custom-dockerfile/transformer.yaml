@@ -1,0 +1,14 @@
+apiVersion: move2kube.konveyor.io/v1alpha1
+kind: Transformer
+metadata:
+  name: CustomDockerfileTransformer
+  labels:
+    move2kube.konveyor.io/transformer: Dockerfile
+spec:
+  class: "Starlark"
+  directoryDetectedAsService: true
+  override:
+    matchLabels:
+      move2kube.konveyor.io/transformer: Dockerfile
+  config:
+    source: transformer.star
