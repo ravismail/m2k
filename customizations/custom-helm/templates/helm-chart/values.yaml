@@ -1,0 +1,12 @@
+# Default values for {{ .ServiceName }}
+replicaCount: 1
+
+image:
+  repository: {{ .ServiceName }}
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
